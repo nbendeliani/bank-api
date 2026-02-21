@@ -2,7 +2,7 @@ from django.urls import path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from .views import (
     RegisterView, DepositView, AccountDetailView,
-    WithdrawView, TransferView, TransactionHistoryView
+    WithdrawView, TransferView, TransactionHistoryView, BalanceView, LoanApprovalView
 )
 
 urlpatterns = [
@@ -14,4 +14,7 @@ urlpatterns = [
     path('withdraw/', WithdrawView.as_view(), name='withdraw'),
     path('transfer/', TransferView.as_view(), name='transfer'),
     path('transactions/', TransactionHistoryView.as_view(), name='transactions'),
+    path('balance/', BalanceView.as_view(), name='balance'),
+    path('loan/approval/', LoanApprovalView.as_view(), name='loan_approval'),
 ]
+

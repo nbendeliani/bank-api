@@ -158,3 +158,22 @@ class TransactionHistoryView(generics.ListAPIView):
         return Transaction.objects.filter( # type: ignore
             account=self.request.user.bank_account
         ).order_by('-created_at')
+
+@extend_schema(tags=['Transactions'], description='Get current user account balance')
+class BalanceView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        account = request.user.bank_account
+        return Response({'balance': str(account.balance)})
+    
+@extend_schema(tags=['Loans'], description='Random loan approval decision')
+class LoanApprovalView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        approved = random.choice([True, False])
+        return Response({
+            'approved': approved,
+            'message': 'approved' if approved else 'not approved'
+        })
