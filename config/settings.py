@@ -20,7 +20,7 @@ DEBUG = config('DEBUG', cast=bool, default=False)
 
 ALLOWED_HOSTS = config(
     'ALLOWED_HOSTS', 
-    default='127.0.0.1,localhost', 
+    default='127.0.0.1,localhost,bank-api-nkkl.onrender.com', 
     cast=lambda v: [s.strip() for s in v.split(',')])
 
 
